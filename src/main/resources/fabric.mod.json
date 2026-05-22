@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "chopchop",
+  "version": "${version}",
+  "name": "ChopChop",
+  "description": "Serverside tree feller mod",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "chopchop@512.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "de.tomalbrc.chopchop.Chopchop"
+    ]
+  },
+  "mixins": [
+    "chopchop.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

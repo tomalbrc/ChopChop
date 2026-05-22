@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.tomalbrc.chopchop.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockBehaviourMixin",
+    "BlockPredicateInvoker",
+    "MappedRegistryMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
