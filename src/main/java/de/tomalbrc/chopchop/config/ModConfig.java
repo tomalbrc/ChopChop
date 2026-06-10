@@ -35,9 +35,9 @@ public class ModConfig {
     public static final Codec<ModConfig> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     Codec.BOOL.fieldOf("animated").orElse(false).forGetter(c -> c.animated),
-                    Codec.INT.fieldOf("animation_duration").orElse(60).forGetter(c -> c.animationDuration),
-                    Codec.FLOAT.fieldOf("speed_multiplication").orElse(2f).forGetter(c -> c.speedMultiplication),
-                    Codec.FLOAT.fieldOf("max_speed_multiplication").orElse(512f).forGetter(c -> c.maxSpeedMultiplication),
+                    Codec.INT.fieldOf("animationDuration").orElse(60).forGetter(c -> c.animationDuration),
+                    Codec.FLOAT.fieldOf("speedMultiplication").orElse(2f).forGetter(c -> c.speedMultiplication),
+                    Codec.FLOAT.fieldOf("maxSpeedMultiplication").orElse(512f).forGetter(c -> c.maxSpeedMultiplication),
                     TreeConfig.CODEC.codec().listOf().fieldOf("configs").forGetter(c -> c.configs)
             ).apply(instance, (animated, ad, sm, msm, c) -> {
                 ModConfig config = new ModConfig();
