@@ -13,6 +13,7 @@
   "slots": [
     "mainhand"
   ],
+  "exclusive_set": "#minecraft:exclusive_set/damage",
   "supported_items": "#chopchop:enchantable/axe",
-  "weight": 2
+  "weight": 1
 }
