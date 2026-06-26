@@ -17,11 +17,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Map;
@@ -60,7 +62,7 @@ public class AnimatedFallingTree extends FallingTree implements PolymerEntity {
 
     @Override
     public EntityType<?> getPolymerEntityType(PacketContext packetContext) {
-        return EntityType.BLOCK_DISPLAY;
+        return EntityTypes.BLOCK_DISPLAY;
     }
 
     @Override
@@ -121,10 +123,10 @@ public class AnimatedFallingTree extends FallingTree implements PolymerEntity {
 
     private void spawnParticles() {
         for (Map.Entry<BlockPos, TreeData.BlockInfo> entry : treeData.blocks().entrySet()) {
-            var p = entry.getKey().getCenter().subtract(treeData.origin().getBottomCenter());
+            var p = Vec3.atCenterOf(entry.getKey()).subtract(Vec3.atCenterOf(treeData.origin()));
             p = p.xRot(85 * Mth.DEG_TO_RAD);
             p = p.yRot((-treeData.direction().toYRot()+180) * Mth.DEG_TO_RAD);
-            var n = treeData.origin().getCenter().add(p);
+            var n = Vec3.atCenterOf(treeData.origin()).add(p);
             ((ServerLevel)level()).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, entry.getValue().blockState()), n.x, n.y, n.z, 10, 0, 0, 0, 0);
             level().playSound(null, treeData.origin(), SoundEvents.ZOMBIE_ATTACK_WOODEN_DOOR, SoundSource.BLOCKS, 0.001f, 0.8f);
         }
@@ -138,7 +140,7 @@ public class AnimatedFallingTree extends FallingTree implements PolymerEntity {
             double deltaY = 0.25;
             double deltaZ = Mth.nextDouble(level().getRandom(), -0.1, 0.1);
 
-            ItemEntity entity = new ItemEntity(level(), getX(), getY() + EntityType.ITEM.getHeight() / 2, getZ(), stack, deltaX, deltaY, deltaZ);
+            ItemEntity entity = new ItemEntity(level(), getX(), getY() + EntityTypes.ITEM.getHeight() / 2, getZ(), stack, deltaX, deltaY, deltaZ);
             entity.setDefaultPickUpDelay();
             level().addFreshEntity(entity);
         }

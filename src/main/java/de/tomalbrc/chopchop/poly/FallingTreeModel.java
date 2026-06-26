@@ -37,7 +37,7 @@ public class FallingTreeModel extends ElementHolder {
             Matrix4f matrix4f = new Matrix4f();
             matrix4f.rotateLocal(Axis.YP.rotationDegrees(direction.toYRot()).normalize());   // rotate around pivot
             matrix4f.translate(direction.getUnitVec3().scale(-0.5).toVector3f());       // push forward in rotated space
-            matrix4f.translate(entry.getKey().getBottomCenter().subtract(pos).toVector3f()); // move to pivot in world
+            matrix4f.translate(Vec3.atCenterOf(entry.getKey()).subtract(pos).toVector3f()); // move to pivot in world
             matrix4f.translate(new Vector3f(-0.51f,0,-0.49f)); // 0.01 offset to prevent z-fight
             blockDisplay.setTransformation(matrix4f);
 

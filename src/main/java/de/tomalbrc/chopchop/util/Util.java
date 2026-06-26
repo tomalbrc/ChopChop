@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class Util {
     public static boolean canUse(Player player) {
@@ -23,14 +24,14 @@ public class Util {
 
     public static void minedTree(ServerLevel level, TreeData treeData) {
         FallingTree fallingTree = ModConfig.getInstance().animated ? new AnimatedFallingTree(Entities.FALLING_TREE, level) : new SequentialFallingTree(Entities.FALLING_TREE2, level);
-        fallingTree.setPos(treeData.origin().getBottomCenter());
+        fallingTree.setPos(Vec3.atCenterOf(treeData.origin()));
         fallingTree.setModelData(treeData);
         fallingTree.breakBlocks(level);
         level.addFreshEntity(fallingTree);
     }
 
     public static Direction direction(Player player, BlockPos blockPos) {
-        var dirVec = player.position().subtract(blockPos.getBottomCenter());
+        var dirVec = player.position().subtract(Vec3.atCenterOf(blockPos));
         return Direction.fromYRot(-Math.atan2(dirVec.x, dirVec.z) * Mth.RAD_TO_DEG).getOpposite();
     }
 

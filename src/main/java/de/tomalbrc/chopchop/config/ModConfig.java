@@ -10,7 +10,7 @@ import de.tomalbrc.chopchop.util.CodecDeserializer;
 import de.tomalbrc.chopchop.enchantment.Enchantments;
 import de.tomalbrc.chopchop.impl.*;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.predicates.DataComponentPredicates;
 import net.minecraft.core.component.predicates.EnchantmentsPredicate;

@@ -5,7 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.tomalbrc.chopchop.Chopchop;
 import de.tomalbrc.chopchop.enchantment.Enchantments;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.*;
 import net.minecraft.core.component.predicates.DataComponentPredicates;
 import net.minecraft.core.component.predicates.EnchantmentsPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,8 +21,6 @@ public class TreeConfig {
     public final boolean requireTool;
     public final ItemPredicate allowedToolFilter;
     public final Type type;
-
-
 
     public final BlockPredicate logFilter;
     public final Optional<BlockPredicate> leavesFilter;
